@@ -59,8 +59,6 @@ export class LiveCases extends Component {
                         minimumValue={0}
                         maximumValue={this.state.records.length - 1}
                         value={this.state.dateIndex}
-                        minimumTrackTintColor="#FFFFFF"
-                        maximumTrackTintColor="#000000"
                         onValueChange={value => this.updateDateIndex(value)}
                         step={1}
                     />
