@@ -32,16 +32,7 @@ export class LiveCases extends Component {
 
     componentDidUpdate (pProps, pS, SS) {
         if(pProps.country !== this.props.country){
-            fetch(`https://api.covid19api.com/total/country/${this.props.country}`)
-            .then ((res) => res.json() )
-            .then ((resJSON) => {
-                this.setState({
-                    records: resJSON,
-                    dateIndex: resJSON.length - 1
-                })
-                //console.log(resJSON);
-            })
-            .catch((error => console.log('errorinUpdatingLiveCases', error)))
+            this.componentDidMount();
         }
     }
 

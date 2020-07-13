@@ -23,9 +23,9 @@ export class StatsScreen extends Component {
 
           <GlobalTable />
 
-          <Text style={styles.title}><Icon name='globe' size={17}>&ensp;</Icon>Country Progress: {this.props.country}</Text>
+          <Text style={styles.title}><Icon name='globe' size={17}>&ensp;</Icon>Total Confirmed: Last 30 Days</Text>
 
-          <CasesBar />
+          <CasesBar country={this.props.country} />
 
         </ScrollView>
       </ScrollView>
