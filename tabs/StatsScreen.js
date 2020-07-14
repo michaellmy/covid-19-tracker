@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Header from '../components/Header';
 import GlobalTable from '../components/stats/GlobalTable';
 import CasesBar from '../components/stats/CasesBar';
-
+import CasesPie from '../components/stats/CasesPie';
 
 export class StatsScreen extends Component {
   constructor(props){
@@ -15,18 +15,23 @@ export class StatsScreen extends Component {
   render() {
     return (
       <ScrollView>
-        
         <Header title='MyCovidTracker'/>
 
         <ScrollView style={styles.container}>
-          <Text style={styles.title}><Icon name='globe' size={17}>&ensp;</Icon>Global Overview</Text>
-
-          <GlobalTable />
-
-          <Text style={styles.title}><Icon name='globe' size={17}>&ensp;</Icon>Total Confirmed: Last 30 Days</Text>
-
+          <Text style={styles.title}><Icon name='bar-chart' size={17}>&ensp;</Icon>{this.props.country.toUpperCase()} Total Confirmed: Last 30 Days</Text>
+          
           <CasesBar country={this.props.country} />
 
+          <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth, marginVertical: 5}}/>
+          <Text style={styles.title}><Icon name='pie-chart' size={17}>&ensp;</Icon>{this.props.country.toUpperCase()} Total Cases Ratio</Text>
+
+          <CasesPie country={this.props.country} />    
+
+          <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth, marginVertical: 5}}/>
+          <Text style={styles.title}><Icon name='globe' size={17}>&ensp;</Icon>Global Overview</Text>
+
+          <GlobalTable /> 
+          
         </ScrollView>
       </ScrollView>
     )
@@ -35,10 +40,8 @@ export class StatsScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 15,
+    marginVertical: 10,
     marginHorizontal: 15,
-    borderBottomColor: 'black',
-    borderBottomWidth: StyleSheet.hairlineWidth
   },
 
   title: {

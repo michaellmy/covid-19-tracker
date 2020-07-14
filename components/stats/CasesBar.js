@@ -56,8 +56,8 @@ export class CasesBar extends Component {
                         yAxisInterval={1} // optional, defaults to 1
                         chartConfig={{
                             backgroundColor: "#ffffff",
-                            backgroundGradientFrom: "#DDD6FC",
-                            backgroundGradientTo: "#d7d0fb",
+                            backgroundGradientFrom: "#d6e0f5",
+                            backgroundGradientTo: "#adc2eb",
                             decimalPlaces: 0, // optional, defaults to 2dp
                             color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
                             labelColor: (opacity = 0) => `rgba(0, 0, 0, ${opacity})`,
@@ -73,6 +73,7 @@ export class CasesBar extends Component {
                             borderRadius: 10,
                         }}
                     />
+                    
                 </ScrollView>
             )
         }
@@ -84,6 +85,6 @@ const styles = StyleSheet.create({
       backgroundColor: '#eee',
       alignSelf: 'center'
     },
-  });
+});
 
 export default CasesBar
