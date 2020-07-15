@@ -4,6 +4,10 @@ import { StyleSheet, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export class TotalOverview extends Component {
+    numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     render() {
         return (
             <View>
@@ -17,7 +21,7 @@ export class TotalOverview extends Component {
                         <DataTable.Cell><Text style={styles.tableBodyConfirmed}>Total Confirmed</Text></DataTable.Cell>
                         <DataTable.Cell numeric>
                             <Text style={styles.tableBodyConfirmed}>
-                                { this.props.records[this.props.dateIndex]["Confirmed"] }
+                                { this.numberWithCommas(this.props.records[this.props.dateIndex]["Confirmed"]) }
                             </Text>
                         </DataTable.Cell>
                     </DataTable.Row>
@@ -26,7 +30,7 @@ export class TotalOverview extends Component {
                         <DataTable.Cell><Text style={styles.tableBodyRecovered}>Total Recovered</Text></DataTable.Cell>
                         <DataTable.Cell numeric>
                             <Text style={styles.tableBodyRecovered}>
-                                { this.props.records[this.props.dateIndex]["Recovered"] }
+                                { this.numberWithCommas(this.props.records[this.props.dateIndex]["Recovered"]) }
                             </Text>
                         </DataTable.Cell>
                     </DataTable.Row>
@@ -35,7 +39,7 @@ export class TotalOverview extends Component {
                         <DataTable.Cell><Text style={styles.tableBodyDeaths}>Total Deaths</Text></DataTable.Cell>
                         <DataTable.Cell numeric>
                             <Text style={styles.tableBodyDeaths}>
-                                { this.props.records[this.props.dateIndex]["Deaths"] }
+                                { this.numberWithCommas(this.props.records[this.props.dateIndex]["Deaths"]) }
                             </Text>
                         </DataTable.Cell>
                     </DataTable.Row>

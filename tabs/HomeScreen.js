@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 
-import LiveCases from '../components/LiveCases';
+import LiveCases from '../components/home/AllOverview';
 import Header from '../components/Header';
 import CountrySelector from '../components/CountrySelector'; 
 

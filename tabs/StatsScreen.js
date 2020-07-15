@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Header from '../components/Header';
 import GlobalTable from '../components/stats/GlobalTable';
-import CasesBar from '../components/stats/CasesBar';
+import CasesLine from '../components/stats/CasesLine';
 import CasesPie from '../components/stats/CasesPie';
 
 export class StatsScreen extends Component {
@@ -20,7 +20,7 @@ export class StatsScreen extends Component {
         <ScrollView style={styles.container}>
           <Text style={styles.title}><Icon name='bar-chart' size={17}>&ensp;</Icon>{this.props.country.toUpperCase()} Total Confirmed: Last 30 Days</Text>
           
-          <CasesBar country={this.props.country} />
+          <CasesLine country={this.props.country} />
 
           <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth, marginVertical: 5}}/>
           <Text style={styles.title}><Icon name='pie-chart' size={17}>&ensp;</Icon>{this.props.country.toUpperCase()} Total Cases Ratio</Text>

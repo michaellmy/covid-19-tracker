@@ -58,22 +58,22 @@ var data = [
       name: "Active",
       population: 0,
       color: "#336699",
-      legendFontColor: "#7F7F7F",
-      legendFontSize: 15
+      legendFontColor: "#001a33",
+      legendFontSize: 14
     },
     {
-      name: "Recovered",
+      name: "Recov.",
       population: 0,
       color: "#00b386",
-      legendFontColor: "#7F7F7F",
-      legendFontSize: 15
+      legendFontColor: "#001a33",
+      legendFontSize: 14
     },
     {
       name: "Deaths",
       population: 0,
       color: "#6e1703",
-      legendFontColor: "#7F7F7F",
-      legendFontSize: 15
+      legendFontColor: "#001a33",
+      legendFontSize: 14
     },
 ];
 

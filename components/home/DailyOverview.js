@@ -4,6 +4,10 @@ import { StyleSheet, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export class DailyOverview extends Component {
+    numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     render() {
         return (
             <View>
@@ -19,9 +23,9 @@ export class DailyOverview extends Component {
                         <DataTable.Cell numeric>
                             <Text style={styles.tableBodyConfirmed}>
                                 { this.props.dateIndex != 0 ?
-                                this.props.records[this.props.dateIndex]["Confirmed"] - this.props.records[this.props.dateIndex - 1]["Confirmed"]
+                                this.numberWithCommas(this.props.records[this.props.dateIndex]["Confirmed"] - this.props.records[this.props.dateIndex - 1]["Confirmed"])
                                 :
-                                this.props.records[this.props.dateIndex]["Confirmed"]
+                                this.numberWithCommas(this.props.records[this.props.dateIndex]["Confirmed"])
                                 }
                             </Text>
                         </DataTable.Cell>
@@ -32,9 +36,9 @@ export class DailyOverview extends Component {
                         <DataTable.Cell numeric>
                             <Text style={styles.tableBodyRecovered}>
                                 { this.props.dateIndex != 0 ?
-                                this.props.records[this.props.dateIndex]["Recovered"] - this.props.records[this.props.dateIndex - 1]["Recovered"]
+                                this.numberWithCommas(this.props.records[this.props.dateIndex]["Recovered"] - this.props.records[this.props.dateIndex - 1]["Recovered"])
                                 :
-                                this.props.records[this.props.dateIndex]["Recovered"]
+                                this.numberWithCommas(this.props.records[this.props.dateIndex]["Recovered"])
                                 }
                             </Text>
                         </DataTable.Cell>
@@ -45,9 +49,9 @@ export class DailyOverview extends Component {
                         <DataTable.Cell numeric>
                             <Text style={styles.tableBodyDeaths}>
                                 { this.props.dateIndex != 0 ?
-                                this.props.records[this.props.dateIndex]["Deaths"] - this.props.records[this.props.dateIndex - 1]["Deaths"]
+                                this.numberWithCommas(this.props.records[this.props.dateIndex]["Deaths"] - this.props.records[this.props.dateIndex - 1]["Deaths"])
                                 :
-                                this.props.records[this.props.dateIndex]["Deaths"]
+                                this.numberWithCommas(this.props.records[this.props.dateIndex]["Deaths"])
                                 }
                             </Text>
                         </DataTable.Cell>
