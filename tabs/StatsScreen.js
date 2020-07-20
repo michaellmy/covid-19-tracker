@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import GlobalTable from '../components/stats/GlobalTable';
 import CasesLine from '../components/stats/CasesLine';
 import CasesPie from '../components/stats/CasesPie';
+import CasesHeatMap from '../components/stats/CasesHeatMap'
 
 export class StatsScreen extends Component {
   constructor(props){
@@ -18,18 +19,23 @@ export class StatsScreen extends Component {
         <Header title='MyCovidTracker'/>
 
         <ScrollView style={styles.container}>
-          <Text style={styles.title}><Icon name='bar-chart' size={17}>&ensp;</Icon>{this.props.country.toUpperCase()} Total Confirmed: Last 30 Days</Text>
-          
+
+          <Text style={styles.title}><Icon name='bar-chart' size={17}>&nbsp;</Icon>{this.props.country.toUpperCase()} Total Confirmed: Last 15 Days</Text>
           <CasesLine country={this.props.country} />
-
           <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth, marginVertical: 5}}/>
-          <Text style={styles.title}><Icon name='pie-chart' size={17}>&ensp;</Icon>{this.props.country.toUpperCase()} Total Cases Ratio</Text>
 
-          <CasesPie country={this.props.country} />    
 
+          <Text style={styles.title}><Icon name='area-chart' size={17}>&nbsp;</Icon>{this.props.country.toUpperCase()} Daily Cases Heatmap</Text>
+          <CasesHeatMap country={this.props.country}/>
           <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth, marginVertical: 5}}/>
-          <Text style={styles.title}><Icon name='globe' size={17}>&ensp;</Icon>Global Overview</Text>
 
+
+          <Text style={styles.title}><Icon name='pie-chart' size={17}>&nbsp;</Icon>{this.props.country.toUpperCase()} Total Cases Ratio</Text>
+          <CasesPie country={this.props.country} /> 
+          <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth, marginVertical: 5}}/>
+
+
+          <Text style={styles.title}><Icon name='globe' size={17}>&nbsp;</Icon>Global Overview</Text>
           <GlobalTable /> 
           
         </ScrollView>
