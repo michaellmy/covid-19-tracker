@@ -9,33 +9,26 @@ import CasesPie from '../components/stats/CasesPie';
 import CasesHeatMap from '../components/stats/CasesHeatMap'
 
 export class StatsScreen extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render() {
     return (
       <ScrollView>
         <Header title='MyCovidTracker'/>
 
         <ScrollView style={styles.container}>
+          <Text style={styles.headline}><Icon name='bar-chart' size={19} /> STATISTICS: {this.props.country.toUpperCase()}</Text>
 
-          <Text style={styles.title}><Icon name='bar-chart' size={17}>&nbsp;</Icon>{this.props.country.toUpperCase()} Total Confirmed: Last 15 Days</Text>
+          <Text style={styles.title}>Total Confirmed: Last 15 Days</Text>
           <CasesLine country={this.props.country} />
-          <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth, marginVertical: 5}}/>
 
-
-          <Text style={styles.title}><Icon name='area-chart' size={17}>&nbsp;</Icon>{this.props.country.toUpperCase()} Daily Cases Heatmap</Text>
+          <Text style={styles.title}>Cases Heatmap Timeline</Text>
           <CasesHeatMap country={this.props.country}/>
-          <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth, marginVertical: 5}}/>
 
-
-          <Text style={styles.title}><Icon name='pie-chart' size={17}>&nbsp;</Icon>{this.props.country.toUpperCase()} Total Cases Ratio</Text>
+          <Text style={styles.title}>Total Cases Ratio</Text>
           <CasesPie country={this.props.country} /> 
           <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth, marginVertical: 5}}/>
 
-
-          <Text style={styles.title}><Icon name='globe' size={17}>&nbsp;</Icon>Global Overview</Text>
+          <Text style={styles.headline}><Icon name='globe' size={19} /> STATISTICS: GLOBAL</Text>
+          <Text style={styles.title}>Global Overview</Text>
           <GlobalTable /> 
           
         </ScrollView>
@@ -50,11 +43,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
   },
 
+  headline: {
+    color: 'darkslateblue',
+    fontSize: 19,
+    fontWeight: 'bold'
+  },
+
   title: {
-      color: 'darkslateblue',
-      fontSize: 17,
-      marginVertical: 5,
-      fontWeight: 'bold'
+    color: 'darkslateblue',
+    fontSize: 17,
+    marginVertical: 8,
+    fontWeight: 'bold'
   }
 });
 

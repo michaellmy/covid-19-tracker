@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, ScrollView, ActivityIndicator, Dimensions } from 'react-native';
 import { PieChart} from "react-native-chart-kit";
 
 export class CasesPie extends Component {
@@ -13,6 +13,7 @@ export class CasesPie extends Component {
     }
 
     componentDidMount () {
+        this._isMounted = true;
         fetch(`https://api.covid19api.com/total/country/${this.props.country}`)
             .then ((res) => res.json() )
             .then ((resJSON) => {
@@ -31,21 +32,23 @@ export class CasesPie extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+      }
+
     render() {
         if (this.state.isLoading) {
-            return ( <View><ActivityIndicator size="large" color="#0000ff" /></View> )
+            return ( <View><ActivityIndicator size="large" color="#0000ff" style={styles.spinner}/></View> )
         }
         else {
             return (
                 <ScrollView style={styles.container}>
                     <PieChart
                         data={this.state.data}
-                        width={350} 
+                        width={Dimensions.get("window").width - 25} 
                         height={200}
                         chartConfig={chartConfig}
                         accessor="population"
-                        bgColor="transparent"
-                        absolute
                     />
                 </ScrollView>
             )
@@ -62,7 +65,7 @@ var data = [
       legendFontSize: 14
     },
     {
-      name: "Recov.",
+      name: "Recovered",
       population: 0,
       color: "#00b386",
       legendFontColor: "#001a33",
@@ -79,10 +82,10 @@ var data = [
 
 const chartConfig = {
     backgroundColor: "#ffffff",
-    backgroundGradientFrom: "#DDD6FC",
-    backgroundGradientTo: "#d7d0fb",
+    backgroundGradientFrom: "#ecf2f8",
+    backgroundGradientTo: "#c7d9ea",
     decimalPlaces: 0, // optional, defaults to 2dp
-    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+    color: (opacity = 0) => `rgba(0, 0, 0, ${opacity})`,
     labelColor: (opacity = 0) => `rgba(0, 0, 0, ${opacity})`,
     propsForDots: {
         r: "1",
@@ -97,6 +100,12 @@ const styles = StyleSheet.create({
       backgroundColor: '#eee',
       alignSelf: 'center'
     },
-  });
+    spinner: {
+        flex: 1,
+        marginVertical:30,
+        justifyContent: 'center',
+        alignItems:'center'    
+    }
+});
 
 export default CasesPie

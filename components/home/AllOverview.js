@@ -41,10 +41,12 @@ export class LiveCases extends Component {
     }
 
     render() {
-            if(!this.state.isLoading) 
-            {
+            if(this.state.isLoading) {
+                return (<View><ActivityIndicator size="large" color="#0000ff" style={styles.spinner}/></View>)
+            }
+            else {
                 return (
-                    <View style={styles.container}>
+                    <View>
                         <Text style={styles.title}><Icon name='calendar' size={17}>&nbsp;</Icon>DATE TIMELINE: {this.state.records[this.state.dateIndex]["Date"].toString().split("T")[0]}</Text>
                         
                         <Slider
@@ -65,28 +67,23 @@ export class LiveCases extends Component {
                         <TotalOverview records={this.state.records} dateIndex={this.state.dateIndex}></TotalOverview>
                     </View>
                 )
-
             } 
-            else 
-            {
-                return <View><ActivityIndicator size="large" color="#0000ff" /></View>
-            }
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        marginHorizontal: 15,
-        borderBottomColor: 'black',
-        borderBottomWidth: StyleSheet.hairlineWidth
-    },
-
     title: {
         color: 'darkslateblue',
         fontSize: 17,
         marginVertical: 5,
         fontWeight: 'bold'
     },
+    spinner: {
+        flex: 1,
+        marginVertical: 150,
+        justifyContent: 'center',
+        alignItems:'center'    
+    }
 });
 
 export default LiveCases;

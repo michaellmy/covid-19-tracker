@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, ScrollView, ActivityIndicator, Dimensions } from 'react-native';
 import { LineChart} from "react-native-chart-kit";
 
 export class CasesBar extends Component {
@@ -44,34 +44,19 @@ export class CasesBar extends Component {
 
     render() {
         if (this.state.isLoading) {
-            return (<View><ActivityIndicator size="large" color="#0000ff" /></View>)
+            return (<View><ActivityIndicator size="large" color="#0000ff" style={styles.spinner}/></View>)
         }
         else {
             return (
                 <ScrollView style={styles.container}>
                     <LineChart
                         data={this.state.data}
-                        width={380} 
-                        height={310}
+                        width={Dimensions.get("window").width - 25}
+                        height={300}
                         yAxisInterval={1} // optional, defaults to 1
-                        chartConfig={{
-                            backgroundColor: "#ffffff",
-                            backgroundGradientFrom: "#d6e0f5",
-                            backgroundGradientTo: "#adc2eb",
-                            decimalPlaces: 0, // optional, defaults to 2dp
-                            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-                            labelColor: (opacity = 0) => `rgba(0, 0, 0, ${opacity})`,
-                            propsForDots: {
-                                r: "1",
-                                strokeWidth: "2",
-                                stroke: "#253a5c"
-                            }
-                        }}
+                        chartConfig={chartConfig}
                         bezier
-                        style={{
-                            marginVertical: 5,
-                            borderRadius: 10,
-                        }}
+                        style={styles.chartStyle}
                     />
                     
                 </ScrollView>
@@ -82,9 +67,32 @@ export class CasesBar extends Component {
 
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#eee',
-      alignSelf: 'center'
+        backgroundColor: '#eee',
+        alignSelf: 'center'
     },
+    spinner: {
+        flex: 1,
+        marginVertical:30,
+        justifyContent: 'center',
+        alignItems:'center'    
+    },
+    chartStyle: {
+        borderRadius: 5,
+    }
 });
 
-export default CasesBar
+const chartConfig = {
+    backgroundColor: "#ffffff",
+    backgroundGradientFrom: "#ecf2f8",
+    backgroundGradientTo: "#c7d9ea",
+    decimalPlaces: 0, // optional, defaults to 2dp
+    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+    labelColor: (opacity = 0) => `rgba(0, 0, 0, ${opacity})`,
+    propsForDots: {
+        r: "1",
+        strokeWidth: "2",
+        stroke: "#253a5c"
+    }
+}
+
+export default CasesBar;

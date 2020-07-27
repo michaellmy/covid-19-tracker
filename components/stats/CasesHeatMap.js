@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, ActivityIndicator, Text } from 'react-native';
+import { StyleSheet, View, ScrollView, ActivityIndicator, Text, Dimensions } from 'react-native';
 import { ContributionGraph } from "react-native-chart-kit";
 import Slider from '@react-native-community/slider';
 
@@ -9,7 +9,7 @@ export class CasesHeatMap extends Component {
         this.state = {
             data: [],
             endDate: new Date(),
-            dateIndex: 110,
+            dateIndex: NUM_DAYS,
             isLoading: true
         }
     }
@@ -19,14 +19,11 @@ export class CasesHeatMap extends Component {
             .then ((res) => res.json() )
             .then ((resJSON) => {
                 var data = [];
-
+                
                 resJSON.forEach((element, index) => {
                     index == 0 ? 
-
                     data.push({ date: element["Date"], count: element["Confirmed"] }) 
-
                     : 
-
                     data.push({ date: resJSON[index]["Date"], count: resJSON[index]["Confirmed"] - resJSON[index - 1]["Confirmed"]})
                 });
 
@@ -52,14 +49,14 @@ export class CasesHeatMap extends Component {
 
     render() {
         if (this.state.isLoading) {
-            return ( <View><ActivityIndicator size="large" color="#0000ff" /></View> )
+            return ( <View><ActivityIndicator size="large" color="#0000ff" style={styles.spinner} /></View> )
         }
         else {
             return (
                 <View style={styles.container}>
                     <Slider
                         style={{width: 380, height: 30, alignSelf: 'center'}}
-                        minimumValue={110}
+                        minimumValue={NUM_DAYS}
                         maximumValue={this.state.data.length - 1}
                         value={this.state.dateIndex}
                         onValueChange={value => this.updateDateIndex(value)}
@@ -67,13 +64,14 @@ export class CasesHeatMap extends Component {
                     />
 
                    <ContributionGraph
-                    values={this.state.data}
-                    endDate={this.state.endDate}
-                    squareSize={20}
-                    numDays={110}
-                    width={420}
-                    height={230}
-                    chartConfig={chartConfig}
+                        values={this.state.data}
+                        endDate={this.state.endDate}
+                        squareSize={20}
+                        numDays={NUM_DAYS}
+                        width={Dimensions.get("window").width - 25}
+                        height={230}
+                        chartConfig={chartConfig}
+                        style={chartStyle}
                     />
                 </View>
             )
@@ -89,11 +87,23 @@ const chartConfig = {
     labelColor: (opacity = 0) => `rgba(0, 0, 0, ${opacity})`,
 }
 
+const chartStyle = {
+    borderRadius: 5,
+}
+
 const styles = StyleSheet.create({
     container: {
       backgroundColor: '#eee',
       alignSelf: 'center'
     },
-  });
+    spinner: {
+        flex: 1,
+        marginVertical:30,
+        justifyContent: 'center',
+        alignItems:'center'    
+    }
+});
+
+const NUM_DAYS = 105
 
 export default CasesHeatMap;

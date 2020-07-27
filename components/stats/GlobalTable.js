@@ -30,7 +30,7 @@ export class GlobalTable extends Component {
 
     render() {
         if (this.state.isLoading) {
-            return (<ActivityIndicator size="large" />)
+            return (<ActivityIndicator size="large" color="#0000ff" style={styles.spinner} />)
         }
 
         else{ 
@@ -79,19 +79,29 @@ const styles = StyleSheet.create({
     },
 
     tableBodyConfirmed: {
+        fontWeight: 'bold',
         color: 'darkblue',
         fontSize: 15
     },
 
     tableBodyRecovered: {
+        fontWeight: 'bold',
         color: 'forestgreen',
         fontSize: 15
     },
 
     tableBodyDeaths: {
+        fontWeight: 'bold',
         color: 'firebrick',
         fontSize: 15
     },
+
+    spinner: {
+        flex: 1,
+        marginVertical:30,
+        justifyContent: 'center',
+        alignItems:'center'    
+    }
 });
 
 export default GlobalTable;

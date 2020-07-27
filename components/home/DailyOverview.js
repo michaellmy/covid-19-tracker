@@ -76,16 +76,19 @@ const styles = StyleSheet.create({
     },
 
     tableBodyConfirmed: {
+        fontWeight: 'bold',
         color: 'darkblue',
         fontSize: 15
     },
 
     tableBodyRecovered: {
+        fontWeight: 'bold',
         color: 'forestgreen',
         fontSize: 15
     },
 
     tableBodyDeaths: {
+        fontWeight: 'bold',
         color: 'firebrick',
         fontSize: 15
     },
