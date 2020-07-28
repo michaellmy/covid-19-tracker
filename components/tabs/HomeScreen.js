@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 import { StyleSheet, ScrollView, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import LiveCases from '../components/home/AllOverview';
-import Header from '../components/Header';
-import CountrySelector from '../components/CountrySelector'; 
+import AllOverview from '../home/AllOverview';
+import Header from '../Header';
+import CountrySelector from '../CountrySelector'; 
 
 
 export class HomeScreen extends Component {
     render() {
         return (
             <ScrollView style={styles.container}>
-                <Header title='MyCovidTracker'/>
+                <Header />
 
                 <View style={styles.inner}>
-                    <Text style={styles.title}><Icon name='flag' size={17}>&nbsp;</Icon>{"SELECT COUNTRY "}</Text>
+                    <Text style={styles.title}><Icon name='flag' size={17}></Icon>  {"SELECT COUNTRY "}</Text>
 
                     <CountrySelector changeCountry={this.props.changeCountry} country={this.props.country} />
 
                     <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth, marginVertical: 10}}/>
 
-                    <LiveCases country={this.props.country}/>
+                    <AllOverview country={this.props.country}/>
                 </View>
 
             </ScrollView> 

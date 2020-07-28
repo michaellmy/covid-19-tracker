@@ -33,7 +33,10 @@ export class CasesBar extends Component {
                 this.setState({data: newData})
             })
             .then (res => this.setState({isLoading: false}))
-            .catch((error => console.log('errorInMountingLiveCases', error)))
+            .catch(error => {
+                console.log('errorInMountingCasesLine', error)
+                this.setState({isLoading: true})
+            })
     }
 
     componentDidUpdate (pProps, pS, SS) {
@@ -68,14 +71,17 @@ export class CasesBar extends Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#eee',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        marginBottom: 8
     },
+
     spinner: {
         flex: 1,
         marginVertical:30,
         justifyContent: 'center',
         alignItems:'center'    
     },
+    
     chartStyle: {
         borderRadius: 5,
     }

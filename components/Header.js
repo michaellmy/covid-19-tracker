@@ -13,7 +13,7 @@ const Header = ({title}) => {
 };
 
 Header.defaultProps = {
-    title: 'MyCovidTracker'
+    title: 'COVIDStats'
 }
 
 

@@ -23,7 +23,10 @@ export class CasesPie extends Component {
                 this.setState({data: data})
             })
             .then (res => this.setState({isLoading: false}))
-            .catch((error => console.log('errorInMountingLiveCases', error)))
+            .catch(error => {
+                console.log('errorInMountingCasesPie', error)
+                this.setState({isLoading: true})
+            })
     }
 
     componentDidUpdate (pProps, pS, SS) {
@@ -98,8 +101,10 @@ const chartConfig = {
 const styles = StyleSheet.create({
     container: {
       backgroundColor: '#eee',
-      alignSelf: 'center'
+      alignSelf: 'center',
+      marginBottom: 8
     },
+    
     spinner: {
         flex: 1,
         marginVertical:30,

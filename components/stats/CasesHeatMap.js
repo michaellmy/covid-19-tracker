@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, ActivityIndicator, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, Dimensions } from 'react-native';
 import { ContributionGraph } from "react-native-chart-kit";
 import Slider from '@react-native-community/slider';
 
@@ -31,7 +31,10 @@ export class CasesHeatMap extends Component {
                 this.setState({dateIndex: data.length})
             })
             .then (res => this.setState({isLoading: false}))
-            .catch((error => console.log('errorInMountingHeatMap', error)))
+            .catch(error => {
+                console.log('errorInMountingHeatMap', error)
+                this.setState({isLoading: true})
+            })
     }
 
     componentDidUpdate (pProps, pS, SS) {
@@ -94,11 +97,13 @@ const chartStyle = {
 const styles = StyleSheet.create({
     container: {
       backgroundColor: '#eee',
-      alignSelf: 'center'
+      alignSelf: 'center',
+      marginBottom: 8
     },
+
     spinner: {
         flex: 1,
-        marginVertical:30,
+        marginVertical: 30,
         justifyContent: 'center',
         alignItems:'center'    
     }

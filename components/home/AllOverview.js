@@ -27,7 +27,10 @@ export class LiveCases extends Component {
                 //console.log(resJSON);
             })
             .then (res => this.setState({isLoading: false}))
-            .catch((error => console.log('errorInMountingLiveCases', error)))
+            .catch((error) => {
+                console.log('errorInMountingAllOverview', error)
+                this.setState({isLoading: true})
+            })
     }
 
     componentDidUpdate (pProps, pS, SS) {
@@ -45,28 +48,33 @@ export class LiveCases extends Component {
                 return (<View><ActivityIndicator size="large" color="#0000ff" style={styles.spinner}/></View>)
             }
             else {
-                return (
-                    <View>
-                        <Text style={styles.title}><Icon name='calendar' size={17}>&nbsp;</Icon>DATE TIMELINE: {this.state.records[this.state.dateIndex]["Date"].toString().split("T")[0]}</Text>
-                        
-                        <Slider
-                            style={{height: 35}}
-                            minimumValue={0}
-                            maximumValue={this.state.records.length - 1}
-                            value={this.state.dateIndex}
-                            onValueChange={value => this.updateDateIndex(value)}
-                            step={1}
-                        />
+                try {
+                    return (
+                        <View>
+                            <Text style={styles.title}><Icon name='calendar' size={17}></Icon>  DATE TIMELINE: {this.state.records[this.state.dateIndex]["Date"].toString().split("T")[0]}</Text>
+                            
+                            <Slider
+                                style={{height: 35}}
+                                minimumValue={0}
+                                maximumValue={this.state.records.length - 1}
+                                value={this.state.dateIndex}
+                                onValueChange={value => this.updateDateIndex(value)}
+                                step={1}
+                            />
 
-                        <Text style={styles.title}>DAILY OVERVIEW </Text>
+                            <Text style={styles.title}><Icon name='ellipsis-v' color='darkslateblue' size={17}/>  DAILY OVERVIEW </Text>
 
-                        <DailyOverview records={this.state.records} dateIndex={this.state.dateIndex}></DailyOverview>
+                            <DailyOverview records={this.state.records} dateIndex={this.state.dateIndex}></DailyOverview>
 
-                        <Text style={styles.title}>{this.props.country.toString().toUpperCase()}'S TOTAL OVERVIEW</Text>
+                            <Text style={styles.title}><Icon name='ellipsis-v' color='darkslateblue' size={17}/>  {this.props.country.toString().toUpperCase()}'S TOTAL OVERVIEW</Text>
 
-                        <TotalOverview records={this.state.records} dateIndex={this.state.dateIndex}></TotalOverview>
-                    </View>
-                )
+                            <TotalOverview records={this.state.records} dateIndex={this.state.dateIndex}></TotalOverview>
+                        </View>
+                    )
+                } catch (err){
+                    console.log("caughtAllOverview")
+                    return (<View><ActivityIndicator size="large" color="#0000ff" style={styles.spinner}/></View>)
+                }
             } 
     }
 }

@@ -21,7 +21,10 @@ export class GlobalTable extends Component {
                 })
             })
             .then(res => this.setState({ isLoading: false }))
-            .catch((error => console.log('error in GlobalTable.js', error)))
+            .catch(error => {
+                console.log('errorInMountingGlobalTable', error)
+                this.setState({isLoading: true})
+            })
     }
 
     numberWithCommas(x) {

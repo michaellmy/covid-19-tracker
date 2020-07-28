@@ -26,7 +26,7 @@ export class CountrySelector extends Component {
                 this.setState({countries: items})
             })
             .then((res) => this.setState({isLoading: false}))
-            .catch (err => console.log(err))
+            .catch (err => console.log("Error in CountrySelector: " + err))
     } 
 
     render() {

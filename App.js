@@ -6,8 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Snackbar from 'react-native-snackbar';
 
-import StatsScreen from './tabs/StatsScreen';
-import HomeScreen from './tabs/HomeScreen';
+import StatsScreen from './components/tabs/StatsScreen';
+import HomeScreen from './components/tabs/HomeScreen';
 
 export class App extends Component {
   constructor(props){
@@ -17,10 +17,6 @@ export class App extends Component {
     }
   }
 
-  componentDidMount () {
-    this.setState({country: 'malaysia'})
-  }
-
   changeCountry = (value) => {
     var oldCountry = this.state.country;
     this.setState({ country: value })
@@ -28,7 +24,7 @@ export class App extends Component {
       text: 'Country Changed!',
       duration: Snackbar.LENGTH_LONG,
       backgroundColor: 'steelblue',
-      textColor: 'azure',
+      textColor: 'white',
       action: {
         text: 'UNDO',
         textColor: 'azure',
