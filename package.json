@@ -1,5 +1,5 @@
 {
-  "name": "MyCovidTracker",
+  "name": "COVIDStats",
   "version": "0.0.1",
   "private": true,
   "scripts": {
