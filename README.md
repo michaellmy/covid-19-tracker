@@ -20,9 +20,9 @@ cd android
 ./gradlew assembleRelease #Generated `apk` will be located at `android/app/build/outputs/apk`
 ```
 ## App Screenshots
+![Statistics Screen](https://user-images.githubusercontent.com/43612294/88760294-525c3000-d19f-11ea-9888-85ccd6a542c8.png)
 ![Home Screen](https://user-images.githubusercontent.com/43612294/88760396-88011900-d19f-11ea-9ea9-053b3080b93a.png)
 ![Home Screen](https://user-images.githubusercontent.com/43612294/88885074-69b41f80-d26a-11ea-915a-21a32eff4439.png)
-![Statistics Screen](https://user-images.githubusercontent.com/43612294/88760294-525c3000-d19f-11ea-9888-85ccd6a542c8.png)
 ![Statistics Screen](https://user-images.githubusercontent.com/43612294/88884722-c82cce00-d269-11ea-9dce-8e6b7f0cf608.png)
 
 ## License
