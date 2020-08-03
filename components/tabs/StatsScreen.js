@@ -7,41 +7,37 @@ import GlobalTable from '../stats/GlobalTable';
 import CasesLine from '../stats/CasesLine';
 import CasesPie from '../stats/CasesPie';
 import CasesHeatMap from '../stats/CasesHeatMap';
-
+import ErrorBoundary from '../ErrorBoundary';
 
 export class StatsScreen extends Component {
   render() {
-    try{ 
-    
-    return (
-      <ScrollView>
-        <Header />
+    return ( 
+        <ScrollView>
+          <Header />
 
-        <ScrollView style={styles.container}>
-          <Text style={styles.headline}><Icon name='bar-chart' size={19} /> STATISTICS: {this.props.country.toUpperCase()}</Text>
+          <ScrollView style={styles.container}>
+            <ErrorBoundary reload={this.props.reload}>
+              <Text style={styles.headline}><Icon name='bar-chart' size={19} /> STATISTICS: {this.props.country.toUpperCase()}</Text>
 
-          <Text style={styles.title}><Icon name='ellipsis-v' color='darkslateblue' size={17}/>  Total Confirmed: Last 15 Days</Text>
-          <CasesLine country={this.props.country} />
+              <Text style={styles.title}><Icon name='ellipsis-v' color='darkslateblue' size={17}/>  Total Confirmed: Last 15 Days</Text>
+              <CasesLine country={this.props.country} />
 
-          <Text style={styles.title}><Icon name='ellipsis-v' color='darkslateblue' size={17}/>  Cases Timeline Heatmap</Text>
-          <CasesHeatMap country={this.props.country}/>
+              <Text style={styles.title}><Icon name='ellipsis-v' color='darkslateblue' size={17}/>  Cases Timeline Heatmap</Text>
+              <CasesHeatMap country={this.props.country}/>
 
-          <Text style={styles.title}><Icon name='ellipsis-v' color='darkslateblue' size={17}/>  Total Cases Ratio</Text>
-          <CasesPie country={this.props.country} /> 
+              <Text style={styles.title}><Icon name='ellipsis-v' color='darkslateblue' size={17}/>  Total Cases Ratio</Text>
+              <CasesPie country={this.props.country} /> 
 
-          <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth, marginVertical: 10}}/>
+              <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth, marginVertical: 10}}/>
 
-          <Text style={styles.headline}><Icon name='globe' size={19} /> STATISTICS: GLOBAL</Text>
-          <Text style={styles.title}><Icon name='ellipsis-v' color='darkslateblue' size={17}/>  Global Overview</Text>
-          <GlobalTable /> 
-          
+              <Text style={styles.headline}><Icon name='globe' size={19} /> STATISTICS: GLOBAL</Text>
+              <Text style={styles.title}><Icon name='ellipsis-v' color='darkslateblue' size={17}/>  Global Overview</Text>
+              <GlobalTable /> 
+            </ErrorBoundary>
+          </ScrollView>
         </ScrollView>
-      </ScrollView>
+      
     )
-    } catch (err) {
-      console.log("caughtStatsScreen")
-      return (<View><ActivityIndicator size="large" color="#0000ff" style={styles.spinner}/></View>)
-    }
   }
 }
 

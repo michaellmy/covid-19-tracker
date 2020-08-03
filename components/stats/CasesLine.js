@@ -33,8 +33,7 @@ export class CasesBar extends Component {
                 this.setState({data: newData})
             })
             .then (res => this.setState({isLoading: false}))
-            .catch(error => {
-                console.log('errorInMountingCasesLine', error)
+            .catch((error) => {
                 this.setState({isLoading: true})
             })
     }

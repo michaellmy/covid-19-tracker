@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import AllOverview from '../home/AllOverview';
 import Header from '../Header';
 import CountrySelector from '../CountrySelector'; 
+import ErrorBoundary from '../ErrorBoundary'
 
 
 export class HomeScreen extends Component {
@@ -14,13 +15,15 @@ export class HomeScreen extends Component {
                 <Header />
 
                 <View style={styles.inner}>
+                  <ErrorBoundary reload={this.props.reload} >
                     <Text style={styles.title}><Icon name='flag' size={17}></Icon>  {"SELECT COUNTRY "}</Text>
 
                     <CountrySelector changeCountry={this.props.changeCountry} country={this.props.country} />
 
                     <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth, marginVertical: 10}}/>
-
+                    
                     <AllOverview country={this.props.country}/>
+                  </ErrorBoundary>
                 </View>
 
             </ScrollView> 

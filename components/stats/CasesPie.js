@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, ActivityIndicator, Dimensions } from 'react-native';
+import { StyleSheet, View, ScrollView, ActivityIndicator, Dimensions, Button } from 'react-native';
 import { PieChart} from "react-native-chart-kit";
 
 export class CasesPie extends Component {
@@ -13,7 +13,6 @@ export class CasesPie extends Component {
     }
 
     componentDidMount () {
-        this._isMounted = true;
         fetch(`https://api.covid19api.com/total/country/${this.props.country}`)
             .then ((res) => res.json() )
             .then ((resJSON) => {
@@ -23,8 +22,7 @@ export class CasesPie extends Component {
                 this.setState({data: data})
             })
             .then (res => this.setState({isLoading: false}))
-            .catch(error => {
-                console.log('errorInMountingCasesPie', error)
+            .catch((error) => {
                 this.setState({isLoading: true})
             })
     }
@@ -34,10 +32,6 @@ export class CasesPie extends Component {
             this.componentDidMount();
         }
     }
-
-    componentWillUnmount() {
-        this._isMounted = false;
-      }
 
     render() {
         if (this.state.isLoading) {

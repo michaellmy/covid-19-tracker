@@ -31,8 +31,7 @@ export class CasesHeatMap extends Component {
                 this.setState({dateIndex: data.length})
             })
             .then (res => this.setState({isLoading: false}))
-            .catch(error => {
-                console.log('errorInMountingHeatMap', error)
+            .catch((error) => {
                 this.setState({isLoading: true})
             })
     }
